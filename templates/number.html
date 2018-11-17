@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(function (){
+                $("#plus").click(function(e) {
+                    e.preventDefault();
+                    $.ajax({
+                        type: "POST",
+                        url: "/numberUpdate",
+                        data: { 
+                            number: 1
+                        },
+                        success: afterSend
+                    });
+                });
+            });
+            function afterSend(result) {
+                alert(result)
+                $('#number').val(result);
+            };
+        </script>
+    </head>
+    <!-- <form action="/numberUpdate" method="post"> -->
+        <div style="flex-direction: row">
+            <button id="plus" name="calcNumber" value="1">+</button>
+            <div id="number" name="number">{{ .Number }}</div>
+            <button id="minus" name="calcNumber" value="-1">-</button>
+        </div>
+    <!-- </form> -->
+</html>
